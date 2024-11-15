@@ -40,4 +40,4 @@ def read_root(name:str,
     print(response)
     #msginfo = str(f"Send to bitrix,ok. response: {response} , Name: {NAME},UTM:{UTM}")
     #TelegramMsg(msginfo)
-    return {"data": name}
+    return {"data": response}
