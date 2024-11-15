@@ -1,13 +1,13 @@
-import environ from os
+import os
 from fastapi import FastAPI
 import requests
 
 app = FastAPI()
-URLBITRIX = environ['URLBITRIX']
-EMOJI = environ['EMOJI']
-SOURCE_ID = environ['SOURCE_ID']
-WMIDFIELD = environ['WMIDFIELD'] #WMID USER FIELD
-TS_ID = environ['TS_ID'] #TRACKING_SOURCE_ID
+URLBITRIX = os.environ['URLBITRIX']
+EMOJI = os.environ['EMOJI']
+SOURCE_ID = os.environ['SOURCE_ID']
+WMIDFIELD = os.environ['WMIDFIELD'] #WMID USER FIELD
+TS_ID = os.environ['TS_ID'] #TRACKING_SOURCE_ID
 
 @app.post("/addlead/")
 def read_root(NAME:str,
