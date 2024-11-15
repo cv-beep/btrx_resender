@@ -1,43 +1,36 @@
-from typing import Union
-import os
-import requests
+import environ from os
 from fastapi import FastAPI
-from pydantic import BaseModel
+import requests
 
 app = FastAPI()
-URLBITRIX = os.environ['URLBITRIX']
-EMOJI = os.environ['EMOJI']
-SOURCE_ID = os.environ['SOURCE_ID']
-
-class Lead():
-    def __init__(self):
-        name: str()
-        phone: int()
-        wmid: int| None = None
-
+URLBITRIX = environ['URLBITRIX']
+EMOJI = environ['EMOJI']
+SOURCE_ID = environ['SOURCE_ID']
+WMIDFIELD = environ['WMIDFIELD'] #WMID USER FIELD
+TS_ID = environ['TS_ID'] #TRACKING_SOURCE_ID
 
 @app.post("/addlead/")
-def read_root(name:str,
-              phone: int,
-              wmid: int| None = None,
+def read_root(NAME:str,
+              PHONE: int,
+              WMID: int| None = None,
               UTM_SOURCE: str| None = None,UTM_MEDIUM:str| None = None,UTM_CAMPAIGN:str| None = None,UTM_CONTENT:str| None = None,UTM_TERM:str| None = None
               ):
     lead_data = {'fields':{
-            'TITLE':str(EMOJI+name),
-            'NAME':name,
+            'TITLE':str(EMOJI + NAME),
+            'NAME': NAME,
             "STATUS_ID": "NEW",
             "ASSIGNED_BY_ID ":"36",
             "SOURCE_ID": SOURCE_ID,
-            "TRACKING_SOURCE_ID": 10,
-            "PHONE": [{ "VALUE": phone,"VALUE_TYPE": "OTHER","TYPE_ID": "PHONE"}],
+            "TRACKING_SOURCE_ID": TS_ID,
+            "PHONE": [{ "VALUE": PHONE,"VALUE_TYPE": "OTHER","TYPE_ID": "PHONE"}],
             'UTM_SOURCE': UTM_SOURCE,
             'UTM_MEDIUM':UTM_MEDIUM,
             'UTM_CAMPAIGN':UTM_CAMPAIGN,
             'UTM_CONTENT':UTM_CONTENT,
-            'UTM_TERM':UTM_TERM
+            'UTM_TERM':UTM_TERM,
+            WMIDFIELD: WMIDFIELD
         }}
     response = requests.post(str(f'{URLBITRIX}/crm.lead.add.json'), json=lead_data)
     print(response)
-    #msginfo = str(f"Send to bitrix,ok. response: {response} , Name: {NAME},UTM:{UTM}")
-    #TelegramMsg(msginfo)
-    return {"data": response}
+    
+    return {"data": '200'}
