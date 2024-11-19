@@ -1,7 +1,7 @@
 import os
 from fastapi import FastAPI
 import requests
-
+import json
 app = FastAPI()
 URLBITRIX = os.environ['URLBITRIX']
 EMOJI = os.environ['EMOJI']
@@ -33,5 +33,5 @@ def read_root(NAME:str,
         }}
     response = requests.post(str(f'{URLBITRIX}/crm.lead.add.json'), json=lead_data)
     print(response)
-
-    return {"data": '200'}
+    answ = json.loads(response.text)
+    return {"data": answ['result']}
