@@ -23,7 +23,7 @@ def read_root(item: Item):
             'NAME': item.NAME,
             "STATUS_ID": "NEW",
             "SOURCE_ID": SOURCE_ID,
-            "PHONE": [{ "VALUE": Item.PHONE,"VALUE_TYPE": "OTHER","TYPE_ID": "PHONE"}],
+            "PHONE": [{ "VALUE": item.PHONE,"VALUE_TYPE": "OTHER","TYPE_ID": "PHONE"}],
             'UTM_SOURCE': UTM_SOURCE,
             'UTM_MEDIUM':UTM_MEDIUM,
             'UTM_CAMPAIGN':UTM_CAMPAIGN,
