@@ -19,7 +19,7 @@ class Item(BaseModel):
 @app.post("/addlead/")
 def read_root(item: Item):
     lead_data = {'fields':{
-            'TITLE':str(EMOJI + NAME),
+            'TITLE':str(EMOJI + item.NAME),
             'NAME': item.NAME,
             "STATUS_ID": "NEW",
             "SOURCE_ID": SOURCE_ID,
