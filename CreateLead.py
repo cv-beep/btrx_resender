@@ -15,7 +15,7 @@ class Item(BaseModel):
     RECORD: str
   
 @app.post("/addlead/")
-def read_root(item: Item):
+def read_post_root(item: Item):
     lead_data = {'fields':{
             'TITLE':str(EMOJI + item.NAME),
             'NAME': item.NAME,
@@ -30,7 +30,7 @@ def read_root(item: Item):
     return {"data": answ['result']}
 
 @app.get("/addlead/")
-def read_root(item: Item):
+def read_get_root(item: Item):
     lead_data = {'fields':{
             'TITLE':str(EMOJI + item.NAME),
             'NAME': item.NAME,
