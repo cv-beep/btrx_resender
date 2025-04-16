@@ -11,9 +11,10 @@ SOURCE_ID = os.environ['SOURCE_ID']
 class Item(BaseModel):
     NAME: str
     PHONE: int
-    COMMENT: str
-    RECORD: str
-    UTM_SOURCE: str
+    COMMENT: str = None
+    RECORD: str = None
+    UTM_SOURCE: str = None
+    UTM_MEDIUM: str = None
   
 @app.post("/addlead/")
 def read_post_root(item: Item):
