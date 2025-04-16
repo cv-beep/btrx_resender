@@ -13,6 +13,7 @@ class Item(BaseModel):
     PHONE: int
     COMMENT: str
     RECORD: str
+    UTM_SOURCE: str
   
 @app.post("/addlead/")
 def read_post_root(item: Item):
@@ -21,8 +22,10 @@ def read_post_root(item: Item):
             'NAME': item.NAME,
             "STATUS_ID": "NEW",
             "SOURCE_ID": SOURCE_ID,
+            "UTM_SOURCE":item.UTM_SOURCE,
             "PHONE": [{ "VALUE": item.PHONE,"VALUE_TYPE": "OTHER","TYPE_ID": "PHONE"}],
             'COMMENTS': item.COMMENT
+        
         }}
     response = requests.post(str(f'{URLBITRIX}/crm.lead.add.json'), json=lead_data)
     print(response)
@@ -36,6 +39,7 @@ def read_get_root(item: Item):
             'NAME': item.NAME,
             "STATUS_ID": "NEW",
             "SOURCE_ID": SOURCE_ID,
+            "UTM_SOURCE":item.UTM_SOURCE,
             "PHONE": [{ "VALUE": item.PHONE,"VALUE_TYPE": "OTHER","TYPE_ID": "PHONE"}],
             'COMMENTS': item.COMMENT
         }}
