@@ -39,6 +39,7 @@ def read_get_root(item: Item):
             "PHONE": [{ "VALUE": item.PHONE,"VALUE_TYPE": "OTHER","TYPE_ID": "PHONE"}],
             'COMMENTS': item.COMMENT
         }}
+    print(f'send data ={lead_data}')
     response = requests.post(str(f'{URLBITRIX}/crm.lead.add.json'), json=lead_data)
     print(response)
     answ = json.loads(response.text)
