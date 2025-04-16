@@ -15,6 +15,9 @@ class Item(BaseModel):
     RECORD: str = None
     UTM_SOURCE: str = None
     UTM_MEDIUM: str = None
+    UTM_CAMPAIGN: str = None
+    UTM_TERM: str = None
+    UTM_CONTENT: str = None 
   
 @app.post("/addlead/")
 def read_post_root(item: Item):
