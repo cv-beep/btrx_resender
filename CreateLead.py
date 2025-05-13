@@ -7,7 +7,12 @@ URLBITRIX = os.environ['URLBITRIX']
 EMOJI = os.environ['EMOJI']
 SOURCE_ID = os.environ['SOURCE_ID']
 WMIDFIELD = os.environ['WMIDFIELD'] #WMID USER FIELD
-TS_ID = os.environ['TS_ID'] #TRACKING_SOURCE_ID
+TG_API = os.environ['TGAPI'] #TG_API
+TG_CHAT = os.environ['TGCHAT'] #TG_CHAT
+
+def sendtgmsg(msg):
+  
+  requests.get(f"https://api.telegram.org/{TG_API}/sendMessage?&chat_id={TG_CHAT}&text="+msg)
 
 @app.post("/addlead/")
 def read_root(NAME:str,
@@ -29,7 +34,10 @@ def read_root(NAME:str,
             'COMMENTS':COMMENT,
             WMIDFIELD: WMID  
         }}
+    
     response = requests.post(str(f'{URLBITRIX}/crm.lead.add.json'), json=lead_data)
     print(response)
+    if response != '200 OK':
+      sendtgmsg(str(f"error - {SOURCE_ID} error {PHONE}"))
     answ = json.loads(response.text)
     return {"data": answ['result']}
