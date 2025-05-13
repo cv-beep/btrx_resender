@@ -12,7 +12,7 @@ TG_CHAT = os.environ['TGCHAT'] #TG_CHAT
 
 def sendtgmsg(msg):
   
-  requests.get(f"https://api.telegram.org/{TG_API}/sendMessage?&chat_id={TG_CHAT}&text="+msg)
+    requests.get(f"https://api.telegram.org/{TG_API}/sendMessage?&chat_id={TG_CHAT}&text="+msg)
 
 @app.post("/addlead/")
 def read_root(NAME:str,
@@ -38,6 +38,6 @@ def read_root(NAME:str,
     response = requests.post(str(f'{URLBITRIX}/crm.lead.add.json'), json=lead_data)
     print(response)
     if response != '200 OK':
-      sendtgmsg(str(f"error - {SOURCE_ID} error {PHONE}"))
+        sendtgmsg(str(f"error - {SOURCE_ID} error {PHONE}"))
     answ = json.loads(response.text)
     return {"data": answ['result']}
