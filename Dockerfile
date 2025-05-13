@@ -9,8 +9,8 @@ ENV EMOJI=None
 ENV SOURCE_ID=None
 ENV WMIDFIELD=UF_CRM_WMID
 ENV TS_ID = None
-ENV TG_API = None
-ENV TG_CHAT = None
+ENV TGAPI = None
+ENV TGCHAT = None
 COPY . /app
 EXPOSE 8000
 CMD uvicorn CreateLead:app --host 0.0.0.0 --port 8000 --reload
