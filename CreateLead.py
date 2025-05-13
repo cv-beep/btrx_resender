@@ -11,7 +11,7 @@ TG_API = os.environ['TGAPI'] #TG_API
 TG_CHAT = os.environ['TGCHAT'] #TG_CHAT
 
 def sendtgmsg(msg):
-    requests.get(f"https://api.telegram.org/{TG_API}/sendMessage?&chat_id={TG_CHAT}&text="+msg)
+    requests.get(f"https://api.telegram.org/{TG_API}/sendMessage?&chat_id={TG_CHAT}&text={msg}")
 
 @app.post("/addlead/")
 def read_root(NAME:str,
