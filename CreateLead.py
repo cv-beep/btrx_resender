@@ -31,7 +31,7 @@ def read_root(NAME:str,
             'UTM_CONTENT':UTM_CONTENT,
             'UTM_TERM':UTM_TERM,
             'COMMENTS':COMMENT,
-            WMIDFIELD: WMID  
+            'WMIDFIELD': WMID  
         }}
     
     response = requests.post(str(f'{URLBITRIX}/crm.lead.add.json'), json=lead_data)
