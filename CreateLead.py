@@ -26,7 +26,6 @@ def read_root(NAME:Annotated[str, Form()],
             "STATUS_ID": "NEW",
             "ASSIGNED_BY_ID ":"36",
             "SOURCE_ID": SOURCE_ID,
-            "TRACKING_SOURCE_ID": TS_ID,
             "PHONE": [{ "VALUE": PHONE,"VALUE_TYPE": "OTHER","TYPE_ID": "PHONE"}],
             'UTM_SOURCE': UTM_SOURCE,
             'UTM_MEDIUM':UTM_MEDIUM,
@@ -34,12 +33,13 @@ def read_root(NAME:Annotated[str, Form()],
             'UTM_CONTENT':UTM_CONTENT,
             'UTM_TERM':UTM_TERM,
             'COMMENTS':COMMENT,
-            WMIDFIELD: WMID  
+            WMIDFIELD: WMID
         }}
     response = requests.post(str(f'{URLBITRIX}/crm.lead.add.json'), json=lead_data)
     print(response)
     answ = json.loads(response.text)
     return {"data": answ['result']}
+
 
 
 
