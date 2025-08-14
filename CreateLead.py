@@ -1,5 +1,5 @@
 import os
-from fastapi import FastAPI
+from fastapi import FastAPI,Form
 import requests
 import json
 from typing import Annotated
@@ -35,5 +35,6 @@ def read_root(NAME:Annotated[str, Form()],
     print(response)
     answ = json.loads(response.text)
     return {"data": answ['result']}
+
 
 
