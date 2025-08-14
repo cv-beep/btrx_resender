@@ -12,7 +12,6 @@ SOURCE_ID = os.environ['SOURCE_ID']
 @app.post("/addlead/")
 def read_root(NAME:Annotated[str, Form()],
               PHONE:Annotated[int, Form()],
-              WMID:Annotated[str|None,Form()]=None,
               COMMENT:Annotated[str|None,Form()]=None,
               UTM_SOURCE:Annotated[str|None,Form()]=None,
               UTM_MEDIUM:Annotated[str|None,Form()]=None,
@@ -32,13 +31,12 @@ def read_root(NAME:Annotated[str, Form()],
             'UTM_CAMPAIGN':UTM_CAMPAIGN,
             'UTM_CONTENT':UTM_CONTENT,
             'UTM_TERM':UTM_TERM,
-            'COMMENTS':COMMENT,
-            WMIDFIELD: WMID
         }}
     response = requests.post(str(f'{URLBITRIX}/crm.lead.add.json'), json=lead_data)
     print(response)
     answ = json.loads(response.text)
     return {"data": answ['result']}
+
 
 
 
