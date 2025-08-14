@@ -10,10 +10,9 @@ WMIDFIELD = os.environ['WMIDFIELD'] #WMID USER FIELD
 TS_ID = os.environ['TS_ID'] #TRACKING_SOURCE_ID
 
 @app.post("/addlead/")
-def read_root(NAME:str,
-              PHONE: int,
-              WMID: int| None = None,COMMENT: str| None = None,
-              UTM_SOURCE: str| None = None,UTM_MEDIUM:str| None = None,UTM_CAMPAIGN:str| None = None,UTM_CONTENT:str| None = None,UTM_TERM:str| None = None
+def read_root(NAME:Annotated[str, Form()],
+              PHONE:Annotated[int, Form()],
+              UTM_SOURCE: Annotated[str, Form()],UTM_TERM:Annotated[str, Form()]
               ):
     lead_data = {'fields':{
             'TITLE':str(EMOJI + NAME),
@@ -35,3 +34,4 @@ def read_root(NAME:str,
     print(response)
     answ = json.loads(response.text)
     return {"data": answ['result']}
+
