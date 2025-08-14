@@ -13,8 +13,13 @@ TS_ID = os.environ['TS_ID'] #TRACKING_SOURCE_ID
 @app.post("/addlead/")
 def read_root(NAME:Annotated[str, Form()],
               PHONE:Annotated[int, Form()],
-              WMID: Annotated[str | None = None, Form()],COMMENT: Annotated[str | None = None, Form()],
-              UTM_SOURCE: Annotated[str | None = None, Form()],UTM_MEDIUM:Annotated[str | None = None, Form()],UTM_CAMPAIGN:Annotated[str | None = None, Form()],UTM_CONTENT:Annotated[str | None = None, Form()],UTM_TERM:Annotated[str | None = None, Form()]
+              WMID: Annotated[str|None, Form()],
+              COMMENT: Annotated[str|None, Form()],
+              UTM_SOURCE: Annotated[str|None, Form()],
+              UTM_MEDIUM:Annotated[str|None, Form()],
+              UTM_CAMPAIGN:Annotated[str|None, Form()],
+              UTM_CONTENT:Annotated[str|None, Form()],
+              UTM_TERM:Annotated[str|None, Form()]
               ):
     lead_data = {'fields':{
             'TITLE':str(EMOJI + NAME),
@@ -36,6 +41,7 @@ def read_root(NAME:Annotated[str, Form()],
     print(response)
     answ = json.loads(response.text)
     return {"data": answ['result']}
+
 
 
 
