@@ -12,13 +12,13 @@ SOURCE_ID = os.environ['SOURCE_ID']
 @app.post("/addlead/")
 def read_root(NAME:Annotated[str, Form()],
               PHONE:Annotated[int, Form()],
-              WMID: Annotated[str|None, Form(default=None)],
-              COMMENT: Annotated[str|None, Form(default=None)],
-              UTM_SOURCE: Annotated[str|None, Form(default=None)],
-              UTM_MEDIUM:Annotated[str|None, Form(default=None)],
-              UTM_CAMPAIGN:Annotated[str|None, Form(default=None)],
-              UTM_CONTENT:Annotated[str|None, Form(default=None)],
-              UTM_TERM:Annotated[str|None, Form(default=None)]
+              WMID:Annotated[str|None,Form()]=None,
+              COMMENT:Annotated[str|None,Form()]=None,
+              UTM_SOURCE:Annotated[str|None,Form()]=None,
+              UTM_MEDIUM:Annotated[str|None,Form()]=None,
+              UTM_CAMPAIGN:Annotated[str|None,Form()]=None,
+              UTM_CONTENT:Annotated[str|None,Form()]=None,
+              UTM_TERM:Annotated[str|None,Form()]=None
               ):
     lead_data = {'fields':{
             'TITLE':str(EMOJI + NAME),
@@ -40,6 +40,7 @@ def read_root(NAME:Annotated[str, Form()],
     print(response)
     answ = json.loads(response.text)
     return {"data": answ['result']}
+
 
 
 
