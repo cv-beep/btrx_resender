@@ -2,7 +2,7 @@ import os
 from fastapi import FastAPI
 import requests
 import json
-from typing import Annotated
+
 app = FastAPI()
 URLBITRIX = os.environ['URLBITRIX']
 EMOJI = os.environ['EMOJI']
@@ -36,4 +36,5 @@ def read_root(NAME:str,
     print(response)
     answ = json.loads(response.text)
     return {"data": answ['result']}
+
 
