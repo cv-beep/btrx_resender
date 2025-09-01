@@ -13,7 +13,7 @@ TS_ID = os.environ['TS_ID'] #TRACKING_SOURCE_ID
 @app.post("/addlead/")
 def read_root(NAME:str,
               PHONE: int,
-              WMID: int| None = None,COMMENT: str| None = None,
+              WMID: int| None = None,COMMENT: str| None = None,RECORD: str| None = None,TITLE:str| None = None,
               UTM_SOURCE: str| None = None,UTM_MEDIUM:str| None = None,UTM_CAMPAIGN:str| None = None,UTM_CONTENT:str| None = None,UTM_TERM:str| None = None
               ):
     lead_data = {'fields':{
