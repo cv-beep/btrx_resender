@@ -15,10 +15,12 @@ def sendtgmsg(msg):
 
 @app.post("/addlead/")
 def read_root(NAME:str,
-              PHONE: str,
+              PHONE: int,
               WMID: int| None = None,COMMENT: str| None = None,
               UTM_SOURCE: str| None = None,UTM_MEDIUM:str| None = None,UTM_CAMPAIGN:str| None = None,UTM_CONTENT:str| None = None,UTM_TERM:str| None = None
               ):
+    if PHONE != int:
+        sendtgmsg(str(f"error - {SOURCE_ID} error {PHONE}"))
     lead_data = {'fields':{
             'TITLE':str(EMOJI + NAME),
             'NAME': NAME,
@@ -35,8 +37,6 @@ def read_root(NAME:str,
         }}
     
     response = requests.post(str(f'{URLBITRIX}/crm.lead.add.json'), json=lead_data)
-    print(response)
-    if response != '200 OK':
-        sendtgmsg(str(f"error - {SOURCE_ID} error {PHONE}"))
+    print(response)    
     answ = json.loads(response.text)
     return {"data": answ['result']}
